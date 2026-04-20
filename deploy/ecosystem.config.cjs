@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'merchant-backend',
-      cwd: '/srv/project',
+      cwd: '/srv/merchant-mobile-homepage-system',
       script: 'npm',
       args: 'run start --workspace backend',
       env: {

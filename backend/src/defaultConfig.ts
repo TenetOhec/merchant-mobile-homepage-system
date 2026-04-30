@@ -35,7 +35,7 @@ export const defaultConfig: HomeConfig = {
     { title: '营销活动', icon: 'Sparkles', badge: 'HOT', sort: 4, visible: true },
     { title: '推广平台', icon: 'MapPinned', badge: '', sort: 5, visible: true },
     { title: '打单工具', icon: 'Printer', badge: '', sort: 6, visible: true },
-    { title: '追两体验', icon: 'MessageSquareQuote', badge: '新', sort: 7, visible: true },
+    { title: '质量体验', icon: 'MessageSquareQuote', badge: '新', sort: 7, visible: true },
     { title: '品质诊断', icon: 'ShieldAlert', badge: '1', sort: 8, visible: true },
     { title: '防控中心', icon: 'Package', badge: '', sort: 9, visible: true },
     { title: '更多', icon: 'LayoutGrid', badge: '', sort: 10, visible: true }

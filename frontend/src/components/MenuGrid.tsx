@@ -8,7 +8,7 @@ const menuAssetMap: Record<string, string> = {
   数据中心: '/extracted_icons/03_数据中心.png',
   推广平台: '/extracted_icons/05_推广平台.png',
   打单工具: '/extracted_icons/06_打单工具.png',
-  追两体验: '/extracted_icons/07_质量体验.png',
+  质量体验: '/extracted_icons/07_质量体验.png',
   品质诊断: '/extracted_icons/08_品质诊断.png',
   防控中心: '/extracted_icons/09_防控中心.png',
   更多: '/extracted_icons/10_更多.png'

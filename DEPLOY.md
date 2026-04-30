@@ -63,6 +63,13 @@ pm2 -v
 nginx -v
 ```
 
+如果你机器上已经跑着一套手工安装的 Nginx，比如：
+
+- 可执行文件：`/usr/local/nginx/sbin/nginx`
+- 配置文件：`/usr/local/nginx/conf/nginx.conf`
+
+那后面所有 Nginx 操作都要以这套为准，不要再混用 `systemctl reload nginx` 和 `/etc/nginx/sites-available/*`。
+
 ## 5. 上传项目到服务器
 
 有两种方式，任选一种。
@@ -74,8 +81,8 @@ nginx -v
 ```bash
 mkdir -p /srv
 cd /srv
-git clone 你的仓库地址 project
-cd /srv/project
+git clone 你的仓库地址 merchant-mobile-homepage-system
+cd /srv/merchant-mobile-homepage-system
 ```
 
 ### 方式 B：本机直接上传
@@ -83,14 +90,14 @@ cd /srv/project
 在你自己的电脑执行：
 
 ```bash
-scp -r /Users/air/Desktop/project root@你的服务器公网IP:/srv/project
+scp -r /Users/air/Desktop/project root@你的服务器公网IP:/srv/merchant-mobile-homepage-system
 ```
 
 上传完后，重新 SSH 登录服务器：
 
 ```bash
 ssh root@你的服务器公网IP
-cd /srv/project
+cd /srv/merchant-mobile-homepage-system
 ```
 
 ## 6. 安装依赖并构建
@@ -98,15 +105,15 @@ cd /srv/project
 服务器执行：
 
 ```bash
-cd /srv/project
+cd /srv/merchant-mobile-homepage-system
 npm install
 npm run build
 ```
 
 成功后会有这些关键产物：
 
-- 前端静态文件：`/srv/project/frontend/dist`
-- 后端构建结果：`/srv/project/backend/dist`
+- 前端静态文件：`/srv/merchant-mobile-homepage-system/frontend/dist`
+- 后端构建结果：`/srv/merchant-mobile-homepage-system/backend/dist`
 
 ## 7. 启动后端
 
@@ -117,7 +124,7 @@ npm run build
 把它复制到服务器项目目录后，执行：
 
 ```bash
-cd /srv/project
+cd /srv/merchant-mobile-homepage-system
 pm2 start deploy/ecosystem.config.cjs
 pm2 save
 pm2 startup
@@ -159,14 +166,34 @@ htpasswd /etc/nginx/.htpasswd me
 然后在服务器执行：
 
 ```bash
-cp /srv/project/deploy/nginx.conf /etc/nginx/sites-available/merchant
+cp /srv/merchant-mobile-homepage-system/deploy/nginx.conf /etc/nginx/sites-available/merchant
 ln -sf /etc/nginx/sites-available/merchant /etc/nginx/sites-enabled/merchant
 rm -f /etc/nginx/sites-enabled/default
 nginx -t
+```
+
+如果你的服务器使用系统安装的 Nginx，继续执行：
+
+```bash
 systemctl reload nginx
 ```
 
+如果你的服务器实际运行的是手工安装的 Nginx，继续执行：
+
+```bash
+/usr/local/nginx/sbin/nginx -t -c /usr/local/nginx/conf/nginx.conf
+/usr/local/nginx/sbin/nginx -s reload
+```
+
 如果 `nginx -t` 报错，先不要 reload，把报错发出来再处理。
+
+如果你的服务器已经存在一套 `/usr/local/nginx`，更建议你直接修改它真正生效的配置文件：
+
+```bash
+/usr/local/nginx/conf/nginx.conf
+```
+
+不要只改 `/etc/nginx/sites-available/merchant`，否则外网仍然可能看到默认欢迎页。
 
 ## 9. 配置云防火墙 / 安全组
 
@@ -202,7 +229,7 @@ http://你的服务器公网IP
 ### 重启后端
 
 ```bash
-cd /srv/project
+cd /srv/merchant-mobile-homepage-system
 pm2 restart merchant-backend
 ```
 
@@ -217,22 +244,44 @@ pm2 logs merchant-backend --lines 100
 如果你是 `git clone` 上去的：
 
 ```bash
-cd /srv/project
+cd /srv/merchant-mobile-homepage-system
 git pull
 npm install
 npm run build
 pm2 restart merchant-backend
+```
+
+如果你使用系统安装的 Nginx，再执行：
+
+```bash
 systemctl reload nginx
+```
+
+如果你使用 `/usr/local/nginx`，改为执行：
+
+```bash
+/usr/local/nginx/sbin/nginx -s reload
 ```
 
 如果你是 `scp` 上传的，就重新上传后再执行：
 
 ```bash
-cd /srv/project
+cd /srv/merchant-mobile-homepage-system
 npm install
 npm run build
 pm2 restart merchant-backend
+```
+
+如果你使用系统安装的 Nginx，再执行：
+
+```bash
 systemctl reload nginx
+```
+
+如果你使用 `/usr/local/nginx`，改为执行：
+
+```bash
+/usr/local/nginx/sbin/nginx -s reload
 ```
 
 ## 12. 常见问题
@@ -255,7 +304,8 @@ curl http://127.0.0.1:4000/api/health
 1. 云防火墙 / 安全组是否放行了正确端口
 2. `nginx` 是否启动
 3. `/etc/nginx/.htpasswd` 是否存在
-4. `nginx` 配置是否已经 reload
+4. 你修改的是否是实际生效的那套 `nginx` 配置
+5. `nginx` 配置是否已经 reload
 
 ### 刷新页面 404
 
@@ -275,7 +325,8 @@ try_files $uri $uri/ /index.html;
 4. 用 `pm2` 启后端
 5. 创建 `nginx` 访问账号密码
 6. 用 `nginx` 挂前端
-7. 在云控制台配置安全组
+7. 确认你改的是实际生效的那套 `nginx`
+8. 在云控制台配置安全组
 
 ## 参考文档
 

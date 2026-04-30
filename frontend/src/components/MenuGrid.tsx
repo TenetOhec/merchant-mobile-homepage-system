@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { getIcon } from '../lib/icons';
 import type { MenuItem } from '../types/config';
 import { sortByVisibleAndSort } from '../lib/helpers';
 
@@ -143,6 +144,7 @@ export function MenuGrid({ menus }: { menus: MenuItem[] }) {
       <div className="grid grid-cols-5 gap-y-[8px]">
         {visibleMenus.map((item) => {
           const assetIcon = menuAssetMap[item.title];
+          const FallbackIcon = getIcon(item.icon);
           return (
             <div key={item.title} className="relative flex flex-col items-center gap-[1px] px-[1px]">
               <div className="relative flex h-[48px] w-[48px] items-center justify-center">
@@ -151,7 +153,7 @@ export function MenuGrid({ menus }: { menus: MenuItem[] }) {
                 ) : assetIcon ? (
                   <img src={assetIcon} alt={item.title} className="h-[42px] w-[42px] object-contain" />
                 ) : (
-                  <div className="h-[42px] w-[42px]" />
+                  <FallbackIcon size={28} strokeWidth={1.9} className="text-[#5a5e68]" />
                 )}
               </div>
               <div className="text-center text-[11px] leading-[1.08] text-[#2f3137]">{item.title}</div>

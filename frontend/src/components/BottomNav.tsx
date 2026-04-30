@@ -9,7 +9,7 @@ export function BottomNav({ items }: { items: BottomNavItem[] }) {
   );
 
   return (
-    <nav className="absolute inset-x-0 bottom-0 rounded-t-[24px] border-t border-black/5 bg-white px-2 pt-1.5 shadow-[0_-6px_18px_rgba(29,35,58,0.05)] safe-bottom">
+    <nav className="absolute inset-x-0 bottom-0 z-30 rounded-t-[24px] border-t border-black/5 bg-white px-2 pt-1.5 shadow-[0_-6px_18px_rgba(29,35,58,0.05)] safe-bottom">
       <div className="grid grid-cols-5">
         {visibleItems.map((item) => {
           const Icon = getIcon(item.icon);

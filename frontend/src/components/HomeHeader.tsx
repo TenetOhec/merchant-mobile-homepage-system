@@ -9,7 +9,7 @@ export function HomeHeader({ store }: { store: StoreConfig }) {
       <div className="absolute inset-x-0 top-0 h-32 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.18),transparent_34%)]" />
       <div className="absolute inset-x-0 bottom-0 h-[126px] bg-[linear-gradient(180deg,rgba(229,57,44,0)_0%,rgba(233,71,52,0.36)_28%,rgba(238,112,90,0.22)_58%,rgba(245,245,247,0)_100%)]" />
       <StatusBar />
-      <div className="relative flex items-start justify-between pb-1 pt-0.5">
+      <div className="relative flex items-start justify-between pb-1 pt-1">
         <div className="flex items-start gap-2.5">
           <img
             src={store.avatar || getPlaceholder('店铺', '#220f0c')}

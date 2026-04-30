@@ -26,11 +26,11 @@ export function HomePage() {
   });
   return (
     <PhoneShell>
-      <div className="relative h-[100svh] min-h-[844px] max-h-[932px] overflow-hidden rounded-[34px] bg-[#f5f5f7]">
+      <div className="relative h-[100svh] overflow-hidden bg-[#f5f5f7] md:min-h-[844px] md:max-h-[932px] md:rounded-[34px]">
         <HomeHeader store={config.store} />
         <RefreshIndicator status={pull.status} pullDistance={pull.pullDistance} />
         <div
-          className="absolute inset-x-0 bottom-0 top-[100px] z-10 bg-transparent"
+          className="absolute inset-x-0 bottom-0 top-[98px] z-10 bg-transparent"
           style={{
             transform: `translateY(${pull.pullDistance}px)`,
             transition: pull.status === 'refreshing' || pull.status === 'success' ? 'transform 220ms ease' : 'none'

@@ -52,7 +52,6 @@ export function usePullToRefresh<T extends HTMLElement>(
     setPullDistance(eased);
     if (eased >= PULL_TO_REFRESH_THRESHOLD) {
       setStatus('ready');
-      void triggerRefresh();
       return;
     }
     setStatus('pulling');
@@ -113,12 +112,20 @@ export function usePullToRefresh<T extends HTMLElement>(
   };
 
   const handleTouchEnd = async () => {
+    if (status === 'ready' && !triggeredRef.current) {
+      void triggerRefresh();
+      return;
+    }
     if (!triggeredRef.current) {
       reset();
     }
   };
 
   const handleMouseUp = async () => {
+    if (status === 'ready' && !triggeredRef.current) {
+      void triggerRefresh();
+      return;
+    }
     if (!triggeredRef.current) {
       reset();
     }

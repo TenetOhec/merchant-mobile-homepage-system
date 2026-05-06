@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { resetConfig, saveConfig } from '../api/config';
 import { AdminLayout } from '../components/admin/AdminLayout';
-import { ImageUploadInput, TextInput, Toggle } from '../components/admin/FormFields';
+import { TextInput, Toggle } from '../components/admin/FormFields';
 import { AdminSection } from '../components/admin/AdminSection';
 import { normalizeGrowthConfig } from '../lib/growth';
 import { iconNames } from '../lib/icons';
@@ -306,66 +306,30 @@ export function AdminPage() {
             </div>
           </AdminSection>
 
-          <AdminSection title="工单提醒卡片">
+          <AdminSection title="静态展示卡片数字">
             <div className="grid gap-4">
-              <TextInput
-                label="title"
-                value={draft.workOrder.title}
-                onChange={(value) => setDraft({ ...draft, workOrder: { ...draft.workOrder, title: value } })}
-              />
-              <ImageUploadInput
-                label="上传图片"
-                value={draft.workOrder.imageUrl}
-                onChange={(value) => setDraft({ ...draft, workOrder: { ...draft.workOrder, imageUrl: value } })}
-              />
-              <TextInput
-                label="imageUrl"
-                value={draft.workOrder.imageUrl}
-                onChange={(value) => setDraft({ ...draft, workOrder: { ...draft.workOrder, imageUrl: value } })}
-                placeholder="也支持直接粘贴图片 URL 或 data URL"
-              />
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid gap-4 md:grid-cols-2">
                 <TextInput
-                  label="amount"
+                  label="流量预计提升"
                   value={draft.workOrder.amount}
                   onChange={(value) => setDraft({ ...draft, workOrder: { ...draft.workOrder, amount: value } })}
                 />
                 <TextInput
-                  label="countdown"
+                  label="订单预计提升"
                   value={draft.workOrder.countdown}
                   onChange={(value) => setDraft({ ...draft, workOrder: { ...draft.workOrder, countdown: value } })}
                 />
-                <TextInput
-                  label="buttonText"
-                  value={draft.workOrder.buttonText}
-                  onChange={(value) => setDraft({ ...draft, workOrder: { ...draft.workOrder, buttonText: value } })}
-                />
               </div>
-            </div>
-          </AdminSection>
-
-          <AdminSection title="营销提升卡片">
-            <div className="grid gap-4">
-              <TextInput
-                label="title"
-                value={draft.improveCard.title}
-                onChange={(value) => setDraft({ ...draft, improveCard: { ...draft.improveCard, title: value } })}
-              />
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid gap-4 md:grid-cols-2">
                 <TextInput
-                  label="traffic"
+                  label="培训开始时间文案"
                   value={draft.improveCard.traffic}
                   onChange={(value) => setDraft({ ...draft, improveCard: { ...draft.improveCard, traffic: value } })}
                 />
                 <TextInput
-                  label="order"
+                  label="培训学习人数文案"
                   value={draft.improveCard.order}
                   onChange={(value) => setDraft({ ...draft, improveCard: { ...draft.improveCard, order: value } })}
-                />
-                <TextInput
-                  label="buttonText"
-                  value={draft.improveCard.buttonText}
-                  onChange={(value) => setDraft({ ...draft, improveCard: { ...draft.improveCard, buttonText: value } })}
                 />
               </div>
             </div>

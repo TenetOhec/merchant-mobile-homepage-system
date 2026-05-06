@@ -66,10 +66,6 @@ export function HomePage() {
                   <ChipGrid chips={config.chips} />
                   <WorkOrderCard config={config.workOrder} />
                   <ImproveCard config={config.improveCard} />
-                  <section className="mx-[6px] mt-[10px] rounded-[18px] bg-white px-3.5 py-3 shadow-[0_10px_24px_rgba(35,39,49,0.06)]">
-                    <h3 className="text-[17px] font-semibold text-[#2e3037]">当前存在待发货订单，请及时发货</h3>
-                    <p className="mt-1.5 text-[12px] text-[#8f929b]">待发货订单数据与首页配置联动，主要用于补足移动端首页纵向节奏。</p>
-                  </section>
                 </div>
               </>
             )}

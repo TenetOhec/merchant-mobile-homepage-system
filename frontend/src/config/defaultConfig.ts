@@ -50,17 +50,17 @@ export const defaultConfig: HomeConfig = {
     { label: '体检待处理', badge: '2', sort: 7, visible: true, growth: { ...growthOff } }
   ],
   workOrder: {
-    title: '店铺有工单将逾期，请立即处理，否则将导致平台介入影响纠纷退款率',
-    amount: '59.9',
-    countdown: '07时41分',
-    buttonText: '去处理',
+    title: '提升消费体验，享退货包运费标识',
+    amount: '25',
+    countdown: '32',
+    buttonText: '去开通',
     imageUrl: ''
   },
   improveCard: {
-    title: '开通退货包运费，你的店铺订单量还能涨约32%',
-    traffic: '25%',
-    order: '32%',
-    buttonText: '立即开通'
+    title: '商家基础运营培训-商办&住宅家具',
+    traffic: '04月23日开始',
+    order: '63030已学习',
+    buttonText: '立即报名'
   },
   bottomNav: [
     { label: '首页', icon: 'House', badge: '', active: true, visible: true },

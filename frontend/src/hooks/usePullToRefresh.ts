@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 
 type PullStatus = 'idle' | 'pulling' | 'ready' | 'refreshing' | 'success';
 
-const THRESHOLD = 10;
+export const PULL_TO_REFRESH_THRESHOLD = 10;
 const MAX_PULL = 132;
 const MIN_REFRESHING_MS = 600;
 const SUCCESS_MS = 900;
@@ -50,7 +50,7 @@ export function usePullToRefresh<T extends HTMLElement>(
     preventDefault?.();
     const eased = Math.min(MAX_PULL, diff * 0.5);
     setPullDistance(eased);
-    if (eased >= THRESHOLD) {
+    if (eased >= PULL_TO_REFRESH_THRESHOLD) {
       setStatus('ready');
       void triggerRefresh();
       return;

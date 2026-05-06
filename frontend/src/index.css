@@ -50,3 +50,27 @@ textarea {
 .safe-top {
   padding-top: env(safe-area-inset-top);
 }
+
+.pdd-heart-beacon {
+  display: block;
+  overflow: visible;
+  flex: none;
+}
+
+.pdd-heart-path {
+  transition: stroke-dashoffset 0.08s linear;
+}
+
+.pdd-heart-beacon.refreshing .pdd-heart-path {
+  animation: pdd-heart-dash-run 0.9s linear infinite;
+}
+
+@keyframes pdd-heart-dash-run {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -100;
+  }
+}

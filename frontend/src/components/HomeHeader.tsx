@@ -1,4 +1,4 @@
-import { ChevronDown, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import type { StoreConfig } from '../types/config';
 import { getPlaceholder } from '../lib/helpers';
 
@@ -13,10 +13,17 @@ export function HomeHeader({ store }: { store: StoreConfig }) {
             alt={store.name}
             className="h-[36px] w-[36px] rounded-[3px] object-cover shadow-[0_5px_12px_rgba(0,0,0,0.16)]"
           />
-          <div>
-            <div className="flex items-center gap-1">
-              <h1 className="max-w-[160px] truncate text-[15px] font-medium tracking-[0.01em] text-white">{store.name}</h1>
-              <ChevronDown size={12} strokeWidth={2.6} />
+          <div className="translate-y-[9px]">
+            <div className="flex items-center gap-[2px]">
+              <h1 className="max-w-[168px] truncate text-[16px] font-normal leading-none tracking-[-0.01em] text-white/95">
+                {store.name}
+              </h1>
+              <img
+                src="/extracted_icons/hidden_icon_transparent.svg"
+                alt=""
+                className="h-[15px] w-[26px] object-contain"
+              />
+              <img src="/extracted_icons/下_拉_.svg" alt="" className="h-[10px] w-[14px] object-contain" />
             </div>
             <div className="mt-0.5 inline-flex max-w-[168px] items-center rounded-full bg-white px-2 py-[2px] text-[10px] font-medium leading-none text-[#bf5a43] shadow-[0_3px_8px_rgba(153,46,30,0.1)]">
               <span className="truncate">{store.notice}</span>

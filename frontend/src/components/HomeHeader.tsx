@@ -21,7 +21,8 @@ export function HomeHeader({ store }: { store: StoreConfig }) {
               <img
                 src="/extracted_icons/hidden_icon_transparent.svg"
                 alt=""
-                className="h-[15px] w-[26px] object-contain"
+                className="h-[15px] w-[28px] object-contain"
+                style={{ transform: 'scaleX(1.18)' }}
               />
               <img src="/extracted_icons/下_拉_.svg" alt="" className="h-[10px] w-[14px] object-contain" />
             </div>

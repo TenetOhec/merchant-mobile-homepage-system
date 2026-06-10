@@ -118,7 +118,7 @@ export function MenuGrid({ menus }: { menus: MenuItem[] }) {
   const visibleMenus = sortByVisibleAndSort(menus).slice(0, 10);
 
   return (
-    <section className="mx-[6px] mt-[3px] rounded-[8px] bg-white px-[4px] py-[10px] shadow-[0_10px_24px_rgba(35,39,49,0.06)]">
+    <section className="mx-[6px] mt-[3px] rounded-[8px] bg-white px-[4px] pb-[10px] pt-[4px] shadow-[0_10px_24px_rgba(35,39,49,0.06)]">
       <style>{`
         @keyframes marketingPulse {
           0% { transform: scale(0.95); }

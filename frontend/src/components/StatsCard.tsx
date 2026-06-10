@@ -26,7 +26,7 @@ export function StatsCard({ stats }: { stats: StatItem[] }) {
   );
 
   return (
-    <section className="mx-[6px] rounded-[8px] bg-white px-2.5 pb-[18px] pt-[20px] shadow-[0_10px_24px_rgba(35,39,49,0.08)]">
+    <section className="mx-[6px] rounded-[8px] bg-white px-2.5 pb-[14px] pt-[13.5px] shadow-[0_10px_24px_rgba(35,39,49,0.08)]">
       {renderRow(top)}
       <div className="h-[18px]" />
       {renderRow(bottom)}

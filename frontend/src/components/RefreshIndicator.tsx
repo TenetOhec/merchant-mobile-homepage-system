@@ -4,14 +4,14 @@ import { PULL_TO_REFRESH_THRESHOLD } from '../hooks/usePullToRefresh';
 interface RefreshIndicatorProps {
   status: 'refreshing' | 'success' | 'idle' | 'pulling' | 'ready';
   pullDistance: number;
+  top?: number;
 }
 
-export function RefreshIndicator({ status, pullDistance }: RefreshIndicatorProps) {
+export function RefreshIndicator({ status, pullDistance, top = 40 }: RefreshIndicatorProps) {
   if (status === 'idle') {
     return null;
   }
 
-  const top = 40 + Math.min(8, pullDistance * 0.06);
   const progress = status === 'success' ? 0 : Math.min(pullDistance / PULL_TO_REFRESH_THRESHOLD, 1);
   const animating = status === 'ready' || status === 'refreshing';
   const label =

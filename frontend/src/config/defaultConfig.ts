@@ -62,6 +62,9 @@ export const defaultConfig: HomeConfig = {
     order: '63030已学习',
     buttonText: '立即报名'
   },
+  pendingShipment: {
+    count: '69'
+  },
   bottomNav: [
     { label: '首页', icon: 'House', badge: '', active: true, visible: true },
     { label: '聊天', icon: 'MessageCircleMore', badge: '21', active: false, visible: true },

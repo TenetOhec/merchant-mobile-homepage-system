@@ -3,13 +3,22 @@ import { resetConfig, saveConfig } from '../api/config';
 import { AdminLayout } from '../components/admin/AdminLayout';
 import { TextInput, Toggle } from '../components/admin/FormFields';
 import { AdminSection } from '../components/admin/AdminSection';
+import { defaultConfig } from '../config/defaultConfig';
 import { normalizeGrowthConfig } from '../lib/growth';
 import { iconNames } from '../lib/icons';
 import { useConfigStore } from '../store/configStore';
 import type { BottomNavItem, ChipItem, GrowthConfig, HomeConfig, MenuItem, StatItem } from '../types/config';
 
 function cloneConfig(config: HomeConfig) {
-  return JSON.parse(JSON.stringify(config)) as HomeConfig;
+  const cloned = JSON.parse(JSON.stringify(config)) as HomeConfig;
+  return {
+    ...defaultConfig,
+    ...cloned,
+    pendingShipment: {
+      ...defaultConfig.pendingShipment,
+      ...cloned.pendingShipment
+    }
+  };
 }
 
 function toDateTimeLocalValue(value: string) {
@@ -309,6 +318,11 @@ export function AdminPage() {
           <AdminSection title="静态展示卡片数字">
             <div className="grid gap-4">
               <div className="grid gap-4 md:grid-cols-2">
+                <TextInput
+                  label="待发货订单数量"
+                  value={draft.pendingShipment.count}
+                  onChange={(value) => setDraft({ ...draft, pendingShipment: { ...draft.pendingShipment, count: value } })}
+                />
                 <TextInput
                   label="流量预计提升"
                   value={draft.workOrder.amount}

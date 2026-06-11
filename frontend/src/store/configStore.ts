@@ -12,6 +12,17 @@ interface ConfigState {
   setConfig: (config: HomeConfig) => void;
 }
 
+function withDefaults(config: HomeConfig): HomeConfig {
+  return {
+    ...defaultConfig,
+    ...config,
+    pendingShipment: {
+      ...defaultConfig.pendingShipment,
+      ...config.pendingShipment
+    }
+  };
+}
+
 export const useConfigStore = create<ConfigState>((set) => ({
   config: defaultConfig,
   loading: true,
@@ -20,7 +31,7 @@ export const useConfigStore = create<ConfigState>((set) => ({
   async fetchRemote(type = 'loading') {
     set(type === 'refresh' ? { refreshing: true, error: '' } : { loading: true, error: '' });
     try {
-      const config = await fetchConfig();
+      const config = withDefaults(await fetchConfig());
       set({ config, loading: false, refreshing: false });
       return config;
     } catch (error) {
@@ -29,6 +40,6 @@ export const useConfigStore = create<ConfigState>((set) => ({
     }
   },
   setConfig(config) {
-    set({ config });
+    set({ config: withDefaults(config) });
   }
 }));

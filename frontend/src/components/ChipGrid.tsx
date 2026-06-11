@@ -12,7 +12,7 @@ export function ChipGrid({ chips }: { chips: ChipItem[] }) {
           {visibleChips.map((item) => (
             <div
               key={item.label}
-              className="relative flex min-h-[38px] items-center overflow-visible rounded-[10px] bg-white px-2.5 shadow-[0_8px_18px_rgba(35,39,49,0.05)]"
+              className="relative flex min-h-[38px] items-center overflow-visible rounded-[8px] bg-white px-2.5 shadow-[0_8px_18px_rgba(35,39,49,0.05)]"
             >
               <span className="text-[12px] font-medium text-[#3a3b42]">{item.label}</span>
               <Badge

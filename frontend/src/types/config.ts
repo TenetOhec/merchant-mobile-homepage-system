@@ -54,6 +54,10 @@ export interface ImproveCardConfig {
   buttonText: string;
 }
 
+export interface PendingShipmentConfig {
+  count: string;
+}
+
 export interface BottomNavItem {
   label: string;
   icon: string;
@@ -69,5 +73,6 @@ export interface HomeConfig {
   chips: ChipItem[];
   workOrder: WorkOrderConfig;
   improveCard: ImproveCardConfig;
+  pendingShipment: PendingShipmentConfig;
   bottomNav: BottomNavItem[];
 }

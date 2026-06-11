@@ -5,7 +5,9 @@ import { ErrorState } from '../components/ErrorState';
 import { HomeHeader } from '../components/HomeHeader';
 import { ImproveCard } from '../components/ImproveCard';
 import { LoadingState } from '../components/LoadingState';
+import { MerchantRecruitCard } from '../components/MerchantRecruitCard';
 import { MenuGrid } from '../components/MenuGrid';
+import { PendingShipmentCard } from '../components/PendingShipmentCard';
 import { PhoneShell } from '../components/PhoneShell';
 import { RefreshIndicator } from '../components/RefreshIndicator';
 import { StatsCard } from '../components/StatsCard';
@@ -13,9 +15,9 @@ import { WorkOrderCard } from '../components/WorkOrderCard';
 import { usePullToRefresh } from '../hooks/usePullToRefresh';
 import { useConfigStore } from '../store/configStore';
 
-const CONTENT_TOP = 66;
+const CONTENT_TOP = 62;
 const CONTENT_RED_BOTTOM = 24;
-const STATS_RED_BACKDROP_HEIGHT = 92;
+const STATS_RED_BACKDROP_HEIGHT = 106;
 const REFRESH_INDICATOR_TOP = -34;
 
 export function HomePage() {
@@ -40,14 +42,6 @@ export function HomePage() {
           style={{
             height: `calc(${CONTENT_TOP + redExtension + pull.pullDistance}px + env(safe-area-inset-top))`,
             transition: pull.status === 'refreshing' || pull.status === 'success' ? 'height 220ms ease' : 'none'
-          }}
-        />
-        <div className="pointer-events-none fixed inset-x-0 top-0 z-50 h-[2px] bg-[#00d084] md:hidden" />
-        <div
-          className="pointer-events-none fixed inset-x-0 z-50 h-[2px] bg-[#00a3ff] md:hidden"
-          style={{
-            top: `calc(${CONTENT_TOP + redExtension + pull.pullDistance}px + env(safe-area-inset-top))`,
-            transition: pull.status === 'refreshing' || pull.status === 'success' ? 'top 220ms ease' : 'none'
           }}
         />
         <HomeHeader store={config.store} />
@@ -89,7 +83,7 @@ export function HomePage() {
                     style={{
                       height: `${STATS_RED_BACKDROP_HEIGHT}px`,
                       background:
-                        'linear-gradient(180deg,#e5392c 0%,#e5392c 54%,#eb5a45 74%,rgba(245,245,247,0.42) 90%,rgba(245,245,247,0) 100%)'
+                        'linear-gradient(180deg,#e5392c 0%,#e5392c 46%,#eb5a45 68%,rgba(245,245,247,0.42) 88%,rgba(245,245,247,0) 100%)'
                     }}
                   />
                   <div className="relative z-10">
@@ -99,6 +93,8 @@ export function HomePage() {
                 <div className="bg-[#f5f5f7] pb-32 pt-[6px]">
                   <MenuGrid menus={config.menus} />
                   <ChipGrid chips={config.chips} />
+                  <MerchantRecruitCard />
+                  <PendingShipmentCard config={config.pendingShipment} />
                   <WorkOrderCard config={config.workOrder} />
                   <ImproveCard config={config.improveCard} />
                 </div>

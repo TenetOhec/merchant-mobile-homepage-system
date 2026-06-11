@@ -2,7 +2,7 @@ import type { ImproveCardConfig } from '../types/config';
 
 export function ImproveCard({ config }: { config: ImproveCardConfig }) {
   return (
-    <section className="mx-[6px] mt-[10px] rounded-[14px] bg-white px-[14px] pb-[10px] pt-[8px] shadow-[0_10px_24px_rgba(35,39,49,0.06)]">
+    <section className="mx-[6px] mt-[10px] rounded-[12px] bg-white px-[14px] pb-[10px] pt-[8px] shadow-[0_10px_24px_rgba(35,39,49,0.06)]">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
           <h3 className="truncate text-[14px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#25272d]">商家基础运营培训-商办&amp;住宅家具</h3>

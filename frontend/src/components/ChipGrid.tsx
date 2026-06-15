@@ -14,7 +14,7 @@ export function ChipGrid({ chips }: { chips: ChipItem[] }) {
               key={item.label}
               className="relative flex min-h-[38px] items-center overflow-visible rounded-[8px] bg-white px-2.5 shadow-[0_8px_18px_rgba(35,39,49,0.05)]"
             >
-              <span className="text-[12px] font-medium text-[#3a3b42]">{item.label}</span>
+              <span className="text-[14px] font-normal text-[#3a3b42]">{item.label}</span>
               <Badge
                 text={item.badge}
                 className={`absolute -right-[4px] -top-[3px] text-[10px] shadow-[0_3px_7px_rgba(255,95,77,0.26)] ${

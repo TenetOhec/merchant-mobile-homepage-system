@@ -19,7 +19,7 @@ export function TextInput({ label, value, onChange, placeholder, className, type
         value={value}
         placeholder={placeholder}
         onChange={(event) => onChange(event.target.value)}
-        className="rounded-2xl border border-softLine bg-[#fafafa] px-4 py-3 outline-none ring-0 transition focus:border-[#ff7b66]"
+        className="rounded-2xl border border-softLine bg-[#fafafa] px-4 py-3 outline-none ring-0 transition focus:border-[#ED3C31]"
       />
     </label>
   );
@@ -30,9 +30,10 @@ interface ImageUploadProps {
   value: string;
   onChange: (value: string) => void;
   className?: string;
+  previewClassName?: string;
 }
 
-export function ImageUploadInput({ label, value, onChange, className }: ImageUploadProps) {
+export function ImageUploadInput({ label, value, onChange, className, previewClassName }: ImageUploadProps) {
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) {
@@ -54,7 +55,7 @@ export function ImageUploadInput({ label, value, onChange, className }: ImageUpl
       <span className="text-sm font-medium text-textSub">{label}</span>
       <div className="rounded-2xl border border-softLine bg-[#fafafa] p-3">
         <div className="flex items-center gap-3">
-          <div className="flex h-20 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white">
+          <div className={clsx('flex h-20 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white', previewClassName)}>
             {value ? <img src={value} alt={label} className="h-full w-full object-cover" /> : <span className="text-xs text-textSub">未上传</span>}
           </div>
           <div className="flex flex-1 flex-col gap-2">

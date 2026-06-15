@@ -10,7 +10,7 @@ export function HomeHeader({ store }: { store: StoreConfig }) {
           <img
             src={store.avatar || getPlaceholder('店铺', '#220f0c')}
             alt={store.name}
-            className="h-[36px] w-[36px] rounded-[3px] object-cover shadow-[0_5px_12px_rgba(0,0,0,0.16)]"
+            className="h-[34px] w-[34px] translate-y-[7px] rounded-[4px] object-cover shadow-[0_5px_12px_rgba(0,0,0,0.16)]"
           />
           <div className="translate-y-[9px]">
             <div className="flex items-center gap-[2px]">

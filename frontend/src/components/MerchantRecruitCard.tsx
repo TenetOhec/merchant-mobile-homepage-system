@@ -1,6 +1,6 @@
-export function MerchantRecruitCard() {
+export function MerchantRecruitCard({ onClose }: { onClose?: () => void }) {
   return (
-    <section className="mx-[6px] mt-[10px] rounded-[12px] bg-white px-[14px] pb-[10px] pt-[8px] shadow-[0_10px_24px_rgba(35,39,49,0.06)]">
+    <section className="mx-[6px] mt-[10px] rounded-[8px] bg-white px-[14px] pb-[10px] pt-[8px] shadow-[0_10px_24px_rgba(35,39,49,0.06)]">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
           <h3 className="truncate text-[15px] font-semibold leading-[1.35] tracking-[-0.01em] text-[#25272d]">
@@ -10,7 +10,14 @@ export function MerchantRecruitCard() {
             点击查看附近最新生意机会及平台新玩法
           </div>
         </div>
-        <span className="-mr-[10px] -mt-[15px] shrink-0 text-[22px] font-light leading-none text-[#c9cbd3]">×</span>
+        <button
+          type="button"
+          aria-label="关闭"
+          onClick={onClose}
+          className="-mr-[10px] -mt-[12px] shrink-0 appearance-none bg-transparent p-0 text-[22px] font-light leading-none text-[#c9cbd3]"
+        >
+          ×
+        </button>
       </div>
       <div className="mt-[12px] flex items-end justify-between gap-3">
         <div className="text-[14px] text-[#a3a6af]">官方招商</div>

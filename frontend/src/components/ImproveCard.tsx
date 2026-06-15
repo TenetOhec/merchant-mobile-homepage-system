@@ -1,8 +1,8 @@
 import type { ImproveCardConfig } from '../types/config';
 
-export function ImproveCard({ config }: { config: ImproveCardConfig }) {
+export function ImproveCard({ config, onClose }: { config: ImproveCardConfig; onClose?: () => void }) {
   return (
-    <section className="mx-[6px] mt-[10px] rounded-[12px] bg-white px-[14px] pb-[10px] pt-[8px] shadow-[0_10px_24px_rgba(35,39,49,0.06)]">
+    <section className="mx-[6px] mt-[10px] rounded-[8px] bg-white px-[14px] pb-[10px] pt-[8px] shadow-[0_10px_24px_rgba(35,39,49,0.06)]">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
           <h3 className="truncate text-[14px] font-semibold leading-[1.15] tracking-[-0.01em] text-[#25272d]">商家基础运营培训-商办&amp;住宅家具</h3>
@@ -14,7 +14,14 @@ export function ImproveCard({ config }: { config: ImproveCardConfig }) {
         </div>
         <div className="relative flex items-start gap-2">
           <img src="/training-card.png" alt="商家基础运营培训" className="translate-x-[20px] h-[73px] w-[95px] shrink-0 rounded-[12px] object-cover" />
-          <span className="relative z-10 -mr-[10px] -mt-[15px] shrink-0 text-[22px] font-light leading-none text-[#c9cbd3]">×</span>
+          <button
+            type="button"
+            aria-label="关闭"
+            onClick={onClose}
+            className="relative z-10 -mr-[10px] -mt-[12px] shrink-0 appearance-none bg-transparent p-0 text-[22px] font-light leading-none text-[#c9cbd3]"
+          >
+            ×
+          </button>
         </div>
       </div>
       <div className="mt-[11px] flex items-end justify-between gap-3">

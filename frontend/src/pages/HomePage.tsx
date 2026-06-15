@@ -19,10 +19,12 @@ const CONTENT_TOP = 62;
 const CONTENT_RED_BOTTOM = 24;
 const STATS_RED_BACKDROP_HEIGHT = 106;
 const REFRESH_INDICATOR_TOP = -34;
+type DismissibleCardId = 'merchantRecruit' | 'pendingShipment' | 'workOrder' | 'improve';
 
 export function HomePage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollTop, setScrollTop] = useState(0);
+  const [dismissedCards, setDismissedCards] = useState<DismissibleCardId[]>([]);
   const { config, error, loading, fetchRemote } = useConfigStore();
 
   useEffect(() => {
@@ -33,12 +35,16 @@ export function HomePage() {
     await fetchRemote('refresh');
   });
   const redExtension = Math.max(0, CONTENT_RED_BOTTOM - scrollTop);
+  const dismissCard = (cardId: DismissibleCardId) => {
+    setDismissedCards((current) => (current.includes(cardId) ? current : [...current, cardId]));
+  };
+  const isCardVisible = (cardId: DismissibleCardId) => !dismissedCards.includes(cardId);
 
   return (
     <PhoneShell>
       <div className="relative h-[100svh] overflow-hidden bg-[#f5f5f7] md:min-h-[844px] md:max-h-[932px] md:rounded-[34px]">
         <div
-          className="pointer-events-none fixed inset-x-0 top-0 bg-[#e5392c] md:hidden"
+          className="pointer-events-none fixed inset-x-0 top-0 bg-[#EF4237] md:hidden"
           style={{
             height: `calc(${CONTENT_TOP + redExtension + pull.pullDistance}px + env(safe-area-inset-top))`,
             transition: pull.status === 'refreshing' || pull.status === 'success' ? 'height 220ms ease' : 'none'
@@ -83,7 +89,7 @@ export function HomePage() {
                     style={{
                       height: `${STATS_RED_BACKDROP_HEIGHT}px`,
                       background:
-                        'linear-gradient(180deg,#e5392c 0%,#e5392c 46%,#eb5a45 68%,rgba(245,245,247,0.42) 88%,rgba(245,245,247,0) 100%)'
+                        'linear-gradient(180deg,#EF4237 0%,#EF4237 68%,rgba(245,245,247,0.42) 88%,rgba(245,245,247,0) 100%)'
                     }}
                   />
                   <div className="relative z-10">
@@ -93,10 +99,18 @@ export function HomePage() {
                 <div className="bg-[#f5f5f7] pb-32 pt-[6px]">
                   <MenuGrid menus={config.menus} />
                   <ChipGrid chips={config.chips} />
-                  <MerchantRecruitCard />
-                  <PendingShipmentCard config={config.pendingShipment} />
-                  <WorkOrderCard config={config.workOrder} />
-                  <ImproveCard config={config.improveCard} />
+                  {isCardVisible('merchantRecruit') && (
+                    <MerchantRecruitCard onClose={() => dismissCard('merchantRecruit')} />
+                  )}
+                  {isCardVisible('pendingShipment') && (
+                    <PendingShipmentCard config={config.pendingShipment} onClose={() => dismissCard('pendingShipment')} />
+                  )}
+                  {isCardVisible('workOrder') && (
+                    <WorkOrderCard config={config.workOrder} onClose={() => dismissCard('workOrder')} />
+                  )}
+                  {isCardVisible('improve') && (
+                    <ImproveCard config={config.improveCard} onClose={() => dismissCard('improve')} />
+                  )}
                 </div>
               </>
             )}

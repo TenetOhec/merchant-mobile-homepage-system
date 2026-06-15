@@ -1,13 +1,20 @@
 import type { PendingShipmentConfig } from '../types/config';
 
-export function PendingShipmentCard({ config }: { config: PendingShipmentConfig }) {
+export function PendingShipmentCard({ config, onClose }: { config: PendingShipmentConfig; onClose?: () => void }) {
   return (
-    <section className="mx-[6px] mt-[10px] rounded-[12px] bg-white px-[14px] pb-[10px] pt-[8px] shadow-[0_10px_24px_rgba(35,39,49,0.06)]">
+    <section className="mx-[6px] mt-[10px] rounded-[8px] bg-white px-[14px] pb-[10px] pt-[8px] shadow-[0_10px_24px_rgba(35,39,49,0.06)]">
       <div className="flex items-start justify-between gap-4">
         <h3 className="min-w-0 flex-1 truncate text-[15px] font-semibold leading-[1.35] tracking-[-0.01em] text-[#25272d]">
           当前存在待发货订单，请及时发货
         </h3>
-        <span className="-mr-[10px] -mt-[15px] shrink-0 text-[22px] font-light leading-none text-[#c9cbd3]">×</span>
+        <button
+          type="button"
+          aria-label="关闭"
+          onClick={onClose}
+          className="-mr-[10px] -mt-[12px] shrink-0 appearance-none bg-transparent p-0 text-[22px] font-light leading-none text-[#c9cbd3]"
+        >
+          ×
+        </button>
       </div>
       <div className="mt-[12px] text-[14px] leading-none text-[#a3a6af]">待发货订单</div>
       <div className="mt-[8px] flex items-end gap-[3px] leading-none text-[#25272d]">

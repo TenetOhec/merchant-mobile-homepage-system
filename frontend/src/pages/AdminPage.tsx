@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { resetConfig, saveConfig } from '../api/config';
 import { AdminLayout } from '../components/admin/AdminLayout';
-import { TextInput, Toggle } from '../components/admin/FormFields';
+import { ImageUploadInput, TextInput, Toggle } from '../components/admin/FormFields';
 import { AdminSection } from '../components/admin/AdminSection';
 import { defaultConfig } from '../config/defaultConfig';
 import { normalizeGrowthConfig } from '../lib/growth';
@@ -182,10 +182,11 @@ export function AdminPage() {
                 value={draft.store.name}
                 onChange={(value) => setDraft({ ...draft, store: { ...draft.store, name: value } })}
               />
-              <TextInput
-                label="店铺头像 URL"
+              <ImageUploadInput
+                label="店铺头像"
                 value={draft.store.avatar}
                 onChange={(value) => setDraft({ ...draft, store: { ...draft.store, avatar: value } })}
+                previewClassName="h-16 w-16 rounded-none"
               />
               <TextInput
                 label="顶部提示文案"

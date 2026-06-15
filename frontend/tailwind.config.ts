@@ -8,7 +8,7 @@ export default {
         sans: ['"PingFang SC"', '"SF Pro Display"', '"Helvetica Neue"', 'sans-serif']
       },
       colors: {
-        appRed: '#e83f2e',
+        appRed: '#ED3C31',
         appBg: '#f5f5f7',
         softLine: '#ececee',
         textMain: '#25262b',

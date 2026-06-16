@@ -5,7 +5,7 @@ type PullStatus = 'idle' | 'pulling' | 'ready' | 'refreshing' | 'success';
 
 export const PULL_TO_REFRESH_THRESHOLD = 10;
 const MAX_PULL = 132;
-const MIN_REFRESHING_MS = 600;
+const MIN_REFRESHING_MS = 850;
 const SUCCESS_MS = 900;
 
 export function usePullToRefresh<T extends HTMLElement>(

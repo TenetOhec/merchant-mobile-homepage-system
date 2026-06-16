@@ -25,7 +25,7 @@ export function HomeHeader({ store }: { store: StoreConfig }) {
               />
               <img src="/extracted_icons/下_拉_.svg" alt="" className="h-[10px] w-[14px] object-contain" />
             </div>
-            <div className="mt-0.5 inline-flex max-w-[168px] items-center rounded-full bg-white px-2 py-[2px] text-[10px] font-medium leading-none text-[#bf5a43] shadow-[0_3px_8px_rgba(153,46,30,0.1)]">
+            <div className="mt-0.5 inline-flex max-w-[168px] items-center rounded-full bg-white px-[6px] py-[2px] text-[10px] font-medium leading-none text-[#bf5a43] shadow-[0_3px_8px_rgba(153,46,30,0.1)]">
               <span className="truncate">{store.notice}</span>
             </div>
           </div>

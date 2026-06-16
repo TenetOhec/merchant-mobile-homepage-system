@@ -1,17 +1,18 @@
 interface PddHeartBeaconProps {
   progress: number;
   animating: boolean;
+  dashOffset?: number;
 }
 
-export function PddHeartBeacon({ progress, animating }: PddHeartBeaconProps) {
+export function PddHeartBeacon({ progress, animating, dashOffset }: PddHeartBeaconProps) {
   const clampedProgress = Math.max(0, Math.min(1, progress));
-  const dashOffset = -clampedProgress * 100;
+  const progressDashOffset = dashOffset ?? -clampedProgress * 100;
 
   return (
     <svg
       className={`pdd-heart-beacon${animating ? ' refreshing' : ''}`}
-      width="28"
-      height="28"
+      width="24"
+      height="24"
       viewBox="0 0 72 72"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
@@ -26,7 +27,7 @@ export function PddHeartBeacon({ progress, animating }: PddHeartBeaconProps) {
         strokeLinejoin="round"
         pathLength="100"
         strokeDasharray="86 14"
-        style={animating ? undefined : { strokeDashoffset: dashOffset }}
+        style={animating ? undefined : { strokeDashoffset: progressDashOffset }}
       />
     </svg>
   );

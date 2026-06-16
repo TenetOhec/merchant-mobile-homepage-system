@@ -14,6 +14,7 @@ export function RefreshIndicator({ status, pullDistance, top = 40 }: RefreshIndi
 
   const progress = status === 'success' ? 0 : Math.min(pullDistance / PULL_TO_REFRESH_THRESHOLD, 1);
   const animating = status === 'ready' || status === 'refreshing';
+  const successDashOffset = 82;
   const label =
     status === 'refreshing' ? '正在刷新' : status === 'success' ? '刷新完成' : status === 'ready' ? '松手刷新' : '下拉刷新';
 
@@ -23,7 +24,7 @@ export function RefreshIndicator({ status, pullDistance, top = 40 }: RefreshIndi
       style={{ top: `${top}px` }}
     >
       <div className="flex items-center gap-2 rounded-full px-3 py-1.5 text-[12px] font-semibold tracking-[0.01em] text-white">
-        <PddHeartBeacon progress={progress} animating={animating} />
+        <PddHeartBeacon progress={progress} animating={animating} dashOffset={status === 'success' ? successDashOffset : undefined} />
         <span>{label}</span>
       </div>
     </div>

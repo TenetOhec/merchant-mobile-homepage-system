@@ -97,7 +97,7 @@ export function usePullToRefresh<T extends HTMLElement>(
     }
     triggeredRef.current = true;
     setStatus('refreshing');
-    setPullDistance(16);
+    setPullDistance(24);
     const start = Date.now();
     try {
       await onRefresh();

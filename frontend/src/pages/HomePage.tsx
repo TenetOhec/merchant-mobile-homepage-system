@@ -18,7 +18,7 @@ import { useConfigStore } from '../store/configStore';
 const CONTENT_TOP = 62;
 const CONTENT_RED_BOTTOM = 24;
 const STATS_RED_BACKDROP_HEIGHT = 106;
-const REFRESH_INDICATOR_TOP = -34;
+const REFRESH_INDICATOR_TOP = -38;
 type DismissibleCardId = 'merchantRecruit' | 'pendingShipment' | 'workOrder' | 'improve';
 
 export function HomePage() {

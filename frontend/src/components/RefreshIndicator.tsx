@@ -23,7 +23,7 @@ export function RefreshIndicator({ status, pullDistance, top = 40 }: RefreshIndi
       className="pointer-events-none absolute inset-x-0 z-30 flex justify-center"
       style={{ top: `${top}px` }}
     >
-      <div className="flex items-center gap-2 rounded-full px-3 py-1.5 text-[12px] font-semibold tracking-[0.01em] text-white">
+      <div className="flex items-center gap-0.5 rounded-full px-3 py-1.5 text-[14px] font-normal tracking-[0.01em] text-white">
         <PddHeartBeacon progress={progress} animating={animating} dashOffset={status === 'success' ? successDashOffset : undefined} />
         <span>{label}</span>
       </div>

@@ -19,14 +19,14 @@ export function StatsCard({ stats }: { stats: StatItem[] }) {
               />
             )}
           </div>
-          <div className="mt-[8px] truncate text-[13.7px] leading-none text-[#6e7078]">{item.label}</div>
+          <div className="mt-[8px] truncate text-[14px] leading-none text-[#6e7078]">{item.label}</div>
         </div>
       ))}
     </div>
   );
 
   return (
-    <section className="mx-[6px] rounded-[8px] bg-white px-2.5 pb-[14px] pt-[13.5px] shadow-[0_10px_24px_rgba(35,39,49,0.08)]">
+    <section className="mx-[6px] rounded-[8px] bg-white px- pb-[14px] pt-[13.5px] shadow-[0_10px_24px_rgba(35,39,49,0.08)]">
       {renderRow(top)}
       <div className="h-[18px]" />
       {renderRow(bottom)}

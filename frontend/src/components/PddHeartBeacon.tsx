@@ -11,8 +11,8 @@ export function PddHeartBeacon({ progress, animating, dashOffset }: PddHeartBeac
   return (
     <svg
       className={`pdd-heart-beacon${animating ? ' refreshing' : ''}`}
-      width="24"
-      height="24"
+      width="21"
+      height="21"
       viewBox="0 0 72 72"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"

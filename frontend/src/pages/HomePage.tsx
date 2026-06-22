@@ -39,6 +39,8 @@ export function HomePage() {
     setDismissedCards((current) => (current.includes(cardId) ? current : [...current, cardId]));
   };
   const isCardVisible = (cardId: DismissibleCardId) => !dismissedCards.includes(cardId);
+  const pendingShipmentCount = config.stats.find((item) => item.label === '待发货')?.value ?? config.pendingShipment.count;
+  const pendingShipmentConfig = { ...config.pendingShipment, count: pendingShipmentCount };
 
   return (
     <PhoneShell>
@@ -103,7 +105,7 @@ export function HomePage() {
                     <MerchantRecruitCard onClose={() => dismissCard('merchantRecruit')} />
                   )}
                   {isCardVisible('pendingShipment') && (
-                    <PendingShipmentCard config={config.pendingShipment} onClose={() => dismissCard('pendingShipment')} />
+                    <PendingShipmentCard config={pendingShipmentConfig} onClose={() => dismissCard('pendingShipment')} />
                   )}
                   {isCardVisible('workOrder') && (
                     <WorkOrderCard config={config.workOrder} onClose={() => dismissCard('workOrder')} />

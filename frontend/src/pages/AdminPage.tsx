@@ -45,6 +45,10 @@ function withGrowth<T extends { growth?: GrowthConfig }>(item: T, fallbackValue:
   return normalizeGrowthConfig(item.growth);
 }
 
+function syncPendingShipmentStat(config: HomeConfig, count: string) {
+  config.stats = config.stats.map((item) => (item.label === '待发货' ? { ...item, value: count } : item));
+}
+
 export function AdminPage() {
   const { config: remoteConfig, fetchRemote, loading, setConfig } = useConfigStore();
   const [draft, setDraft] = useState<HomeConfig>(() => cloneConfig(remoteConfig));
@@ -65,6 +69,18 @@ export function AdminPage() {
     setDraft((current) => {
       const next = cloneConfig(current);
       next.stats[index] = { ...next.stats[index], ...patch };
+      if (next.stats[index].label === '待发货' && patch.value !== undefined) {
+        next.pendingShipment.count = patch.value;
+      }
+      return next;
+    });
+  };
+
+  const updatePendingShipmentCount = (count: string) => {
+    setDraft((current) => {
+      const next = cloneConfig(current);
+      next.pendingShipment.count = count;
+      syncPendingShipmentStat(next, count);
       return next;
     });
   };
@@ -322,7 +338,7 @@ export function AdminPage() {
                 <TextInput
                   label="待发货订单数量"
                   value={draft.pendingShipment.count}
-                  onChange={(value) => setDraft({ ...draft, pendingShipment: { ...draft.pendingShipment, count: value } })}
+                  onChange={updatePendingShipmentCount}
                 />
                 <TextInput
                   label="流量预计提升"

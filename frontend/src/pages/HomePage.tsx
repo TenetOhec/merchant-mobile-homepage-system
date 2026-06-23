@@ -17,7 +17,7 @@ import { useConfigStore } from '../store/configStore';
 
 const CONTENT_TOP = 62;
 const CONTENT_RED_BOTTOM = 24;
-const STATS_RED_BACKDROP_HEIGHT = 106;
+const STATS_RED_BACKDROP_HEIGHT = 128;
 const REFRESH_INDICATOR_TOP = -38;
 type DismissibleCardId = 'merchantRecruit' | 'pendingShipment' | 'workOrder' | 'improve';
 
@@ -91,7 +91,7 @@ export function HomePage() {
                     style={{
                       height: `${STATS_RED_BACKDROP_HEIGHT}px`,
                       background:
-                        'linear-gradient(180deg,#EF4237 0%,#EF4237 68%,rgba(245,245,247,0.42) 88%,rgba(245,245,247,0) 100%)'
+                        'linear-gradient(180deg,#EF4237 0%,#EF4237 36%,rgba(245,245,247,0.34) 80%,rgba(245,245,247,0) 100%)'
                     }}
                   />
                   <div className="relative z-10">

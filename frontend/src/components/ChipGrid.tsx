@@ -1,6 +1,5 @@
 import type { ChipItem } from '../types/config';
 import { sortByVisibleAndSort } from '../lib/helpers';
-import { Badge } from './Badge';
 
 export function ChipGrid({ chips }: { chips: ChipItem[] }) {
   const visibleChips = sortByVisibleAndSort(chips);
@@ -15,12 +14,16 @@ export function ChipGrid({ chips }: { chips: ChipItem[] }) {
               className="relative flex min-h-[38px] items-center overflow-visible rounded-[8px] bg-white px-2.5 shadow-[0_8px_18px_rgba(35,39,49,0.05)]"
             >
               <span className="text-[14px] font-normal text-[#3a3b42]">{item.label}</span>
-              <Badge
-                text={item.badge}
-                className={`absolute -right-[4px] -top-[3px] text-[10px] shadow-[0_3px_7px_rgba(255,95,77,0.26)] ${
-                  item.badge.length <= 1 ? 'h-[15px] w-[15px] min-w-[15px] rounded-full px-0 py-0' : 'min-w-[22px] px-[5px] py-[2px]'
-                }`}
-              />
+              {item.badge && (
+                <span
+                  className={`absolute -right-[4px] -top-[3px] inline-flex items-center justify-center rounded-full bg-[#ff5f4d] text-[12px] leading-none text-white shadow-[0_3px_7px_rgba(255,95,77,0.26)] ${
+                    item.badge.length <= 1 ? 'h-[15px] w-[15px] min-w-[15px]' : 'h-[14px] min-w-[20px] px-[3px]'
+                  }`}
+                  style={{ fontWeight: 450 }}
+                >
+                  {item.badge}
+                </span>
+              )}
             </div>
           ))}
         </div>
